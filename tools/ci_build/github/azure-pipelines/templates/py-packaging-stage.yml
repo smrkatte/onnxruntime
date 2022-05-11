@@ -305,6 +305,7 @@ stages:
       steps:
       - checkout: vcpkg
       - script: |
+          dir $(Build.SourcesDirectory)
           $(Build.SourcesDirectory)\vcpkg\vcpkg.exe install
       - template: telemetry-steps.yml
 
