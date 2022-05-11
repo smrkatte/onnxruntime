@@ -45,14 +45,6 @@ parameters:
   type: boolean
   default: true
 
-resources:
-  repositories: 
-    - repository: vcpkg
-      type: github
-      name: microsoft/vcpkg
-      ref: refs/heads/master
-      endpoint: microsoft
-
 stages:
 - stage: Python_Packaging
 
