@@ -303,7 +303,9 @@ stages:
         clean: all
 
       steps:
+      - checkout: self
       - checkout: vcpkg
+
       - script: |
           dir $(Build.SourcesDirectory)
           $(Build.SourcesDirectory)\vcpkg\vcpkg.exe install
