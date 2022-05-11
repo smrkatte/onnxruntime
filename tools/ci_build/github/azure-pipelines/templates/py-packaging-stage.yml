@@ -304,12 +304,12 @@ stages:
 
       steps:
       - checkout: self
-        path: $(Build.SourcesDirectory)
       - checkout: vcpkg
+        path: vcpkg
 
       - script: |
           dir $(Build.SourcesDirectory)
-          $(Build.SourcesDirectory)\vcpkg\vcpkg.exe install
+          dir $(Build.BinariesDirectory)
       - template: telemetry-steps.yml
 
       - task: UsePythonVersion@0
@@ -356,7 +356,7 @@ stages:
             --enable_onnx_tests
             ${{ parameters.build_py_parameters }}
             --parallel --update
-            $(TelemetryOption)
+            $(TelemetryOption) --cmake_extra_defines CMAKE_TOOLCHAIN_FILE=$(Build.BinariesDirectory)/scripts/buildsystems/vcpkg.cmake
           workingDirectory: '$(Build.BinariesDirectory)'
 
       - task: VSBuild@1
